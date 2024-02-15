@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TillManagement")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c51f91968e75379bf66e2ba5ed524299594a857")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ec036afece519b1445c2f534ac833b127c63d02")]
 [assembly: System.Reflection.AssemblyProductAttribute("TillManagement")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TillManagement")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
