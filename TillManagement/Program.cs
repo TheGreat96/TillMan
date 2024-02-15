@@ -1,117 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
-namespace TillManagement
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            // Read input from file
-            string[] lines = File.ReadAllLines("input.txt");
-            List<Transaction> transactions = new List<Transaction>();
+        // Read input from file
+        string[] lines = File.ReadAllLines("input.txt");
 
-            // Parse input
-            foreach (string line in lines)
-            {
-                string[] parts = line.Split(',');
-                string[] items = parts[0].Split(';');
-                string[] amounts = parts[1].Split('-').Skip(1).ToArray();
-
-                List<Item> itemList = new List<Item>();
-                foreach (string item in items)
-                {
-                    string[] itemParts = item.Split(' ');
-                    string description = string.Join(" ", itemParts.Take(itemParts.Length - 1));
-                    int amount = int.Parse(itemParts.Last());
-                    itemList.Add(new Item(description, amount));
-                }
-
-                int[] paidAmounts = Array.ConvertAll(amounts, int.Parse);
-
-                transactions.Add(new Transaction(itemList.ToArray(), paidAmounts));
-            }
-
-            // Process transactions
-            List<string> outputLines = new List<string>();
-            Till till = new Till(5, 5, 6, 12, 10, 10);
-
-            foreach (Transaction transaction in transactions)
-            {
-                // Record initial state of the till
-                string tillStateBeforeTransaction = till.ToString();
-
-                // Calculate total cost of the transaction
-                int totalCost = transaction.TotalCost();
-
-                // Calculate amount paid
-                int amountPaid = transaction.AmountPaid();
-
-                // Calculate change
-                int change = amountPaid - totalCost;
-
-                // Calculate change breakdown
-                Dictionary<int, int> changeBreakdown = till.CalculateChange(change);
-
-                // Update till
-                till.Update(transaction);
-
-                // Construct output line
-                string outputLine = $"{tillStateBeforeTransaction} | Total: {totalCost} | Paid: {amountPaid} | Change: {change} | Breakdown: {string.Join(", ", changeBreakdown.Select(kv => $"{kv.Value} x R{kv.Key}"))}";
-                outputLines.Add(outputLine);
-            }
-
-            // Output results to file
-            outputLines.Add(till.ToString());
-            File.WriteAllLines("output.txt", outputLines);
-            Console.WriteLine("Output written to output.txt");
-        }
-    }
-
-    class Item
-    {
-        public string Description { get; }
-        public int Amount { get; }
-
-        public Item(string description, int amount)
-        {
-            Description = description;
-            Amount = amount;
-        }
-    }
-
-    class Transaction
-    {
-        private Item[] items;
-        private int[] paidAmounts;
-
-        public Transaction(Item[] items, int[] paidAmounts)
-        {
-            this.items = items;
-            this.paidAmounts = paidAmounts;
-        }
-
-        public int TotalCost()
-        {
-            return items.Sum(item => item.Amount);
-        }
-
-        public int AmountPaid()
-        {
-            return paidAmounts.Sum();
-        }
-
-        public Item[] GetItems()
-        {
-            return items;
-        }
-    }
-
-    class Till
-    {
-        private Dictionary<int, int> denominations = new Dictionary<int, int>()
+        // Initialize till
+        Dictionary<int, int> till = new Dictionary<int, int>
         {
             { 50, 5 },
             { 20, 5 },
@@ -121,74 +20,94 @@ namespace TillManagement
             { 1, 10 }
         };
 
-        public Till(int fifties, int twenties, int tens, int fives, int twos, int ones)
-        {
-            denominations[50] = fifties;
-            denominations[20] = twenties;
-            denominations[10] = tens;
-            denominations[5] = fives;
-            denominations[2] = twos;
-            denominations[1] = ones;
-        }
+        // Opening output file for writing
+        StreamWriter writer = new StreamWriter("output.txt");
 
-        public void Update(Transaction transaction)
+        // Initialize starting till balance
+        int tillBalance = CalculateTillBalance(till);
+
+        // Write starting balance to output
+        WriteToOutput(writer, tillBalance, "Till Start");
+
+        // Process each transaction
+        foreach (string line in lines)
         {
-            foreach (var item in transaction.GetItems())
+            string[] transactionData = line.Split(';');
+            string[] items = transactionData[0].Split(',');
+
+            // Calculate total cost of transaction
+            int transactionTotal = 0;
+            foreach (string item in items)
             {
-                if (item.Amount > 50)
-                {
-                    denominations[50]--;
-                }
-                else if (item.Amount > 20)
-                {
-                    denominations[20]--;
-                }
-                else if (item.Amount > 10)
-                {
-                    denominations[10]--;
-                }
-                else if (item.Amount > 5)
-                {
-                    denominations[5]--;
-                }
-                else if (item.Amount > 2)
-                {
-                    denominations[2]--;
-                }
-                else
-                {
-                    denominations[1]--;
-                }
-            }
-        }
-
-        public Dictionary<int, int> CalculateChange(int change)
-        {
-            var changeBreakdown = new Dictionary<int, int>();
-
-            foreach (var kvp in denominations.OrderByDescending(x => x.Key))
-            {
-                int denomination = kvp.Key;
-                int count = change / denomination;
-
-                if (count > kvp.Value)
-                {
-                    count = kvp.Value;
-                }
-
-                if (count > 0)
-                {
-                    changeBreakdown.Add(denomination, count);
-                    change -= count * denomination;
-                }
+                string[] itemData = item.Split(' ');
+                int amount = int.Parse(itemData[1].Substring(1)); // Remove 'R' from amount
+                transactionTotal += amount;
             }
 
-            return changeBreakdown;
+            // Parse paid amount
+            int paidAmount = int.Parse(transactionData[1].Split('-')[0].Substring(1)); // Remove 'R' from amount
+
+            // Calculate change
+            int change = paidAmount - transactionTotal;
+
+            // Update till balance
+            tillBalance += paidAmount;
+
+            // Write transaction details to output
+            WriteToOutput(writer, tillBalance, transactionTotal.ToString(), paidAmount.ToString(), change.ToString(), CalculateChangeBreakdown(change, till));
+
+            // Update till with coins & notes given as change
+            UpdateTill(change, till);
         }
 
-        public override string ToString()
+        // Close output file
+        writer.Close();
+    }
+
+    // Calculate current till balance
+    static int CalculateTillBalance(Dictionary<int, int> till)
+    {
+        int balance = 0;
+        foreach (KeyValuePair<int, int> kvp in till)
         {
-            return $"Till status: {string.Join(", ", denominations.Select(kv => $"{kv.Value} x R{kv.Key}"))}";
+            balance += kvp.Key * kvp.Value;
+        }
+        return balance;
+    }
+
+    // Write transaction details to output file
+    static void WriteToOutput(StreamWriter writer, params string[] values)
+    {
+        writer.WriteLine(string.Join(", ", values));
+    }
+
+    // Calculate breakdown of change into currency denominations
+    static string CalculateChangeBreakdown(int change, Dictionary<int, int> till)
+    {
+        List<string> breakdown = new List<string>();
+        foreach (KeyValuePair<int, int> kvp in till)
+        {
+            int count = Math.Min(change / kvp.Key, kvp.Value);
+            if (count > 0)
+            {
+                breakdown.Add($"{count}xR{kvp.Key}");
+                change -= kvp.Key * count;
+            }
+        }
+        return string.Join("-", breakdown);
+    }
+
+    // Update till with coins/notes given as change
+    static void UpdateTill(int change, Dictionary<int, int> till)
+    {
+        foreach (KeyValuePair<int, int> kvp in till)
+        {
+            int count = Math.Min(change / kvp.Key, kvp.Value);
+            if (count > 0)
+            {
+                till[kvp.Key] -= count;
+                change -= kvp.Key * count;
+            }
         }
     }
 }
