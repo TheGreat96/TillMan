@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\users\\public\\Projects\\TillManagement\\TillManagement.csproj",
+      "projectUniqueName": "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\TillManagement.csproj",
       "projectName": "TillManagement",
-      "projectPath": "C:\\users\\public\\Projects\\TillManagement\\TillManagement.csproj",
+      "projectPath": "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\TillManagement.csproj",
       "packagesPath": "C:\\Users\\Chomza Support\\.nuget\\packages\\",
-      "outputPath": "C:\\users\\public\\Projects\\TillManagement\\obj\\",
+      "outputPath": "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Chomza Support\\AppData\\Roaming\\NuGet\\NuGet.Config"

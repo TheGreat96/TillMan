@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Public\\Projects\\TillManagement\\TillManagement.csproj": {}
+    "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\TillManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Public\\Projects\\TillManagement\\TillManagement.csproj": {
+    "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\TillManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Public\\Projects\\TillManagement\\TillManagement.csproj",
+        "projectUniqueName": "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\TillManagement.csproj",
         "projectName": "TillManagement",
-        "projectPath": "C:\\Users\\Public\\Projects\\TillManagement\\TillManagement.csproj",
+        "projectPath": "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\TillManagement.csproj",
         "packagesPath": "C:\\Users\\Chomza Support\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Public\\Projects\\TillManagement\\obj\\",
+        "outputPath": "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Chomza Support\\AppData\\Roaming\\NuGet\\NuGet.Config"
