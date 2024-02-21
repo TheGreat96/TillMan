@@ -27,3 +27,17 @@ C:\Users\Chomza Support\Documents\Projects\TillManagement\obj\Debug\net8.0\refin
 C:\Users\Chomza Support\Documents\Projects\TillManagement\obj\Debug\net8.0\TillManagement.pdb
 C:\Users\Chomza Support\Documents\Projects\TillManagement\obj\Debug\net8.0\TillManagement.genruntimeconfig.cache
 C:\Users\Chomza Support\Documents\Projects\TillManagement\obj\Debug\net8.0\ref\TillManagement.dll
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\bin\Debug\net8.0\TillManagement.exe
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\bin\Debug\net8.0\TillManagement.deps.json
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\bin\Debug\net8.0\TillManagement.runtimeconfig.json
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\bin\Debug\net8.0\TillManagement.dll
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\bin\Debug\net8.0\TillManagement.pdb
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\obj\Debug\net8.0\TillManagement.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\obj\Debug\net8.0\TillManagement.AssemblyInfoInputs.cache
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\obj\Debug\net8.0\TillManagement.AssemblyInfo.cs
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\obj\Debug\net8.0\TillManagement.csproj.CoreCompileInputs.cache
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\obj\Debug\net8.0\TillManagement.dll
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\obj\Debug\net8.0\refint\TillManagement.dll
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\obj\Debug\net8.0\TillManagement.pdb
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\obj\Debug\net8.0\TillManagement.genruntimeconfig.cache
+C:\Users\MyPC\Downloads\Compressed\TillManagement-master\tillmanagement\obj\Debug\net8.0\ref\TillManagement.dll

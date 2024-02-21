@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\TillManagement.csproj": {}
+    "C:\\Users\\MyPC\\Downloads\\Compressed\\TillManagement-master\\tillmanagement\\TillManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\TillManagement.csproj": {
+    "C:\\Users\\MyPC\\Downloads\\Compressed\\TillManagement-master\\tillmanagement\\TillManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\TillManagement.csproj",
+        "projectUniqueName": "C:\\Users\\MyPC\\Downloads\\Compressed\\TillManagement-master\\tillmanagement\\TillManagement.csproj",
         "projectName": "TillManagement",
-        "projectPath": "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\TillManagement.csproj",
-        "packagesPath": "C:\\Users\\Chomza Support\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Chomza Support\\Documents\\Projects\\TillManagement\\obj\\",
+        "projectPath": "C:\\Users\\MyPC\\Downloads\\Compressed\\TillManagement-master\\tillmanagement\\TillManagement.csproj",
+        "packagesPath": "C:\\Users\\MyPC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MyPC\\Downloads\\Compressed\\TillManagement-master\\tillmanagement\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Chomza Support\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\MyPC\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -53,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

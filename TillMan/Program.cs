@@ -24,61 +24,44 @@ namespace TillManagement
             List<Transaction> transactions = new List<Transaction>();
 
             // Parse input
-    foreach (string line in lines)
-{
-    Console.WriteLine($"Processing line: {line}");
-
-    string[] lineParts = line.Split(';'); // Split by semicolon to separate items
-    
-    // Ensure that the line has at least two parts (items and amounts)
-    if (lineParts.Length < 2)
-    {
-        Console.WriteLine("Invalid input format. Skipping line.");
-        continue;
-    }
-    Console.WriteLine($"Line parts length: {lineParts.Length}");
-     Console.WriteLine($"Second part of the line: {lineParts[1]}");
-    string[] items = lineParts[0].Split(';');
-    string[] amounts = lineParts[1].Split('-').Skip(1).ToArray(); // Split by dash to handle multiple amounts
-
-Console.WriteLine($"Items count: {items.Length}, Amounts count: {amounts.Length}");
-    // Rest of the processing logic...
-
-
-    List<Item> itemList = new List<Item>();
-    foreach (string item in items)
-    {
-        Console.WriteLine($"Processing item: {item}");
-
-        // Extract description and amount
-        string[] itemParts = item.Split(' ');
-        int amountIndex = Array.FindLastIndex(itemParts, part => part.StartsWith("R"));
-        string description = string.Join(" ", itemParts.Take(amountIndex));
-        int amount = int.Parse(itemParts[amountIndex].Substring(1)); // Remove the 'R' symbol
-        itemList.Add(new Item(description, amount));
-    }
-
-    Console.WriteLine($"Amounts paid: {string.Join(", ", amounts)}");
-
-    // Parse amounts paid
-    if (amounts.Length >0){
-    List<int> paidAmounts = new List<int>();
-    foreach (string amountString in amounts)
-    {
-        int startIndex = amountString.IndexOf('R'); // Find the index of 'R' symbol
-        if (startIndex != -1)
-        {
-            string amountSubstring = amountString.Substring(startIndex + 1); // Extract the substring after 'R'
-            if (int.TryParse(amountSubstring, out int amount))
+            foreach (string line in lines)
             {
-                paidAmounts.Add(amount);
-            }
-        }
-    }
-    }
-    // Remaining logic...
-}
+                Console.WriteLine($"Processing line: {line}");
 
+                string[] lineParts = line.Split(';'); // Split by semicolon to separate items
+
+                // Ensure that the line has at least two parts (items and amounts)
+                if (lineParts.Length < 2)
+                {
+                    Console.WriteLine("Invalid input format. Skipping line.");
+                    continue;
+                }
+
+                string[] items = lineParts[0].Split(';');
+                string[] amounts = lineParts[1].Split('-').Skip(1).ToArray(); // Split by dash to handle multiple amounts
+
+                List<Item> itemList = new List<Item>();
+              
+                Console.WriteLine($"Amounts paid: {string.Join(", ", amounts)}");
+
+                // Parse amounts paid
+                List<int> paidAmounts = new List<int>();
+                foreach (string amountString in amounts)
+                {
+                    int startIndex = amountString.IndexOf('R'); // Find the index of 'R' symbol
+                    if (startIndex != -1)
+                    {
+                        string amountSubstring = amountString.Substring(startIndex + 1); // Extract the substring after 'R'
+                        if (int.TryParse(amountSubstring, out int amount))
+                        {
+                            paidAmounts.Add(amount);
+                        }
+                    }
+                }
+
+                // Create a new Transaction object and add it to the transactions list
+                transactions.Add(new Transaction(itemList.ToArray(), paidAmounts.ToArray()));
+            }
 
             // Process transactions
             List<string> outputLines = new List<string>();
@@ -115,9 +98,8 @@ Console.WriteLine($"Items count: {items.Length}, Amounts count: {amounts.Length}
         }
     }
 
-    // Item, Transaction, and Till classes remain the same as provided in the previous responses
+   
 }
-
 
 
     class Item
